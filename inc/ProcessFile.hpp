@@ -19,14 +19,15 @@
 
 class ProcessFile {
 public:
-    ProcessFile(std::string cppFile,std::string hppFile);
+    ProcessFile(std::string cppFile/*,std::string hppFile*/);
     int getTotalProgram();
     int getNrMethods();
     int getNrLinesExpecificMethod(std::string methodName);
+    std::map<std::string,int> getMapMethods();
 
 private:
     std::string fileCpp;
-    std::string fileHpp;
+    /*std::string fileHpp;*/
     int addOneLineToMethod(std::string methodName);
     int countTotalLinesInsideMethods();
     std::map<std::string,int> methods;

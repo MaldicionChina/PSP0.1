@@ -4,13 +4,14 @@
 
 #include "ProcessFile.hpp"
 
-ProcessFile::ProcessFile(std::string cppFile,std::string hppFile){
+ProcessFile::ProcessFile(std::string cppFile/*,std::string hppFile*/) {
     this->fileCpp = cppFile;
-    this->fileHpp = hppFile;
+    /*this->fileHpp = hppFile;*/
 
     std::string actualMethod = ""; // Flag to indicate that have not found method yet
     std::string methodName = "--";
     std::regex BeginMethodMatch (".*::.*\\(.*\\).\\{$",std::regex::ECMAScript);
+    std::regex ConstructorMatch (".*::.*\\(.*\\).\\{$",std::regex::ECMAScript);
     std::regex EndMethodMatch ("^\\}",std::regex::ECMAScript);
     std::regex regexToExtractMethodName (".*::(\\w+)\\(.*\\).\\{$",std::regex::ECMAScript);
     std::regex desicionAndLoop(".*([:lower:].*).*\\{.*", std::regex::ECMAScript);
@@ -21,12 +22,11 @@ ProcessFile::ProcessFile(std::string cppFile,std::string hppFile){
     std::smatch matchMethodName; // Variable to save method name result of the submatch
 
     std::ifstream readFileCpp(fileCpp);
-    std::ifstream readFileHpp(fileHpp);
+    /*std::ifstream readFileHpp(fileHpp);*/
 
-    std::string str;
+    std::string str; // Variable to save the line that's read
 
-
-    while (std::getline(readFileCpp, str)) {
+    while (std::getline(readFileCpp, str)) { // look over line by line
 
        // std::cout<<str<<std::endl;
         if (std::regex_match(str, BeginMethodMatch)) {
@@ -83,4 +83,8 @@ int ProcessFile::addOneLineToMethod(std::string methodName) {
     }
 
     return 0;
+}
+
+std::map<std::string,int> ProcessFile::getMapMethods() {
+    return this->methods;
 }

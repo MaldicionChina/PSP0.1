@@ -5,7 +5,7 @@
 #include <gtest/gtest.h>
 #include "ProcessFile.hpp"
 
-ProcessFile* countFile = new ProcessFile("LinkedListCpp.txt","../inc/ProcessFile.hpp");
+ProcessFile* countFile = new ProcessFile("LinkedListCpp.txt");
 
 TEST(ProcessFile, CountMethods){
             //Expected - Actual

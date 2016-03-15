@@ -29,5 +29,6 @@ add_library(processFile SHARED ${SOURCE}/ProcessFile.cpp)
 # Add and run CMakeLists.txt inside 'test' folder
 add_subdirectory(test)
 
-set(SOURCE_FILES main.cpp)
+set(SOURCE_FILES ${SOURCE}/main.cpp)
 add_executable(PSP0_1 ${SOURCE_FILES})
+target_link_libraries(PSP0_1 processFile)
